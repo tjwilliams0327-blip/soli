@@ -7,9 +7,7 @@ pragma solidity >=0.8.0 <0.9.0;
  */
 contract BayHouseRental {
 
-    // -------------------------------------------------------------------------
     // State Variables
-    // -------------------------------------------------------------------------
 
     address payable public owner;   // landlord
     uint public ratePerDay;         // cost per day in wei
@@ -17,18 +15,14 @@ contract BayHouseRental {
     uint public totalEarned;        // lifetime earnings tracker
     string public houseLocation;    // e.g. "123 Bay Dr, Gulf Shores, AL"
 
-    // -------------------------------------------------------------------------
     // Events
-    // -------------------------------------------------------------------------
 
     event Booked(address indexed guest, uint numDays, uint totalPaid, uint availableFrom);
     event RateUpdated(uint oldRate, uint newRate);
     event OwnershipTransferred(address indexed oldOwner, address indexed newOwner);
     event Log(address indexed sender, string message);
 
-    // -------------------------------------------------------------------------
     // Constructor
-    // -------------------------------------------------------------------------
 
     constructor(string memory _houseLocation) {
         owner         = payable(msg.sender);
@@ -38,9 +32,7 @@ contract BayHouseRental {
         houseLocation = _houseLocation;
     }
 
-    // -------------------------------------------------------------------------
     // Modifiers
-    // -------------------------------------------------------------------------
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can use this function.");
@@ -52,9 +44,7 @@ contract BayHouseRental {
         _;
     }
 
-    // -------------------------------------------------------------------------
     // Public Functions
-    // -------------------------------------------------------------------------
 
     /**
      * @notice Check whether the Bay House is currently available.
